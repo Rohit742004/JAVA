@@ -1,0 +1,62 @@
+package sdmcet.cse.oop.jdbc;
+
+import java.sql.*;
+
+public class JDBCCourseDemo {
+	//JDBC Driver and DB URL
+	static final String JDBC_DRIVER = "com.mysql.jdbc.Driver";
+	static final String DB_URL = "jdbc:mysql://localhost/2SD22CS075?characterEncoding=utf8";
+	//DB credentials
+	static final String USER = "root";
+	static final String PASSWD = "";
+	
+	public static void main(String[] args) {
+		// TODO Auto-generated method stub
+		Connection conn = null;
+		Statement stmt = null;
+		
+		try {
+			//Step-1: Register JDBC Driver
+			Class.forName(JDBC_DRIVER);
+			//step-2: Create a connection
+			System.out.println("Connection to the database...");
+			conn = DriverManager.getConnection(DB_URL, USER, PASSWD);
+			System.out.println("Connected to: "+ conn.getCatalog());
+			//step-3: Create statement
+			System.out.println("Creating statement :");
+			stmt = conn.createStatement();
+			//step-4: Execute queries
+			String sql = "SELECT * FROM course";
+			ResultSet rs = stmt.executeQuery(sql);
+			while(rs.next()) {
+				int code = rs.getInt("code");
+				String name = rs.getString("name");
+				String LTP = rs.getString("LTP");
+				int duration = rs.getInt("duration");
+				
+				System.out.println("course code : "+ code);
+				System.out.println("Name: "+ name);
+				System.out.println("LTP : "+ LTP);
+				System.out.println("duration : "+ duration);
+			}
+			//step-5: Close connection
+			rs.close();
+			stmt.close();
+			conn.close();
+		}catch(SQLException se) {
+			se.printStackTrace();
+		}catch(Exception e) {
+			e.printStackTrace();
+		}
+	}
+
+}
+
+output: 
+        Connection to the database...
+        Connected to: 2SD22CS075
+        Creating statement :
+        course code : 22
+        Name: OOP using Java
+        LTP : 3-0-0
+        duration : 39
