@@ -34,7 +34,7 @@ class matrixMultiplyThread extends Thread{
     }
 }
 
-class Q4{
+class Q5{
 
     static void readMatrix(int[][] matrix){
         Scanner sc = new Scanner(System.in);
