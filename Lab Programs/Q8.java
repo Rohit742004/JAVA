@@ -1,6 +1,6 @@
 /* Write a Java program that provides a generic sort method that can sort elements of any reference type.
 [Hint: use compareTo() method available in Comparable<T> interface] */
-public class Q1{
+public class Q8{
     static <T> void display(T []arr){
         for(T e : arr){
             System.out.println(e);
